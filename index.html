@@ -1,0 +1,73 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Life Clock</title>
+
+     <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Life Clock</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container theme-showcase" role="main">
+
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Your Life Clock</h1>
+        <div id="result"></div>
+        <div id="disappear">
+        <img id="disappear" src="images/clock.png" alt="clock image">
+      
+        <p>If your life could be compared to a 24-hour clock, what hour would it point to? <br> This is a simple web application designed to help those who think it is "too late" to start something new or try a new direction in life. This clock will help you gain perspective into how much time you have.  </p>
+        <br>
+
+    <div id="inputDiv">
+      <div id="inputArea">
+      <p id="sameLine">You are </p>
+      <input id="inputActual" type="text" value="Input Your Age (1-80)"></input><p id="sameLine"> years old </p>
+      <br><br>
+      <div id="errorMsg" class="alert alert-danger" style="display: none">Not a valid input. Please input an age value between 1 and 80</div>
+      </div>
+      <br>
+  </div> 
+
+<button onclick="playclip();" id="submit" class="btn btn-primary btn-lg btn-success">Calculate Clock &raquo;</button>
+
+      </div> <!-- disappear ender -->
+
+      </div> <!-- jumbotron ender -->
+  
+
+
+    </div> <!-- /container -->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- LIFECLOCK OWN JavaScript Code -->
+   <script src="script.js"></script>
+
+<audio>
+<source src="dcoin.wav"></source>
+</audio>
+
+</body>
+</html>

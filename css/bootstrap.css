@@ -7,7 +7,6 @@
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 
 #result {
-  margin: 5%;
   margin-bottom: 5%;
 }
 
@@ -29,8 +28,8 @@
   margin-top: 2%;
 }
 
-#reset {
-  width: 100px;
+#resetButton {
+  width: 150px;
   height: 50px;
 }
 
@@ -4422,7 +4421,7 @@ a.list-group-item.active > .badge,
 .jumbotron h1,
 .jumbotron .h1 {
   color: inherit;
-  font-family: 'Glyphicons Halflings';
+  font-family: fantasy;
 }
 .jumbotron p {
   margin-bottom: 15px;
@@ -5092,6 +5091,7 @@ a.list-group-item-danger.active:focus {
   border-bottom-color: #ebccd1;
 }
 .well {
+  font-size: 2em;
   min-height: 20px;
   padding: 19px;
   margin-bottom: 20px;

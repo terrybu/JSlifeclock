@@ -7,7 +7,12 @@
 
      <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
-
+<style>
+ #clock {
+    padding: 5px;
+    border:1px solid #000000;
+  }
+</style>
 </head>
 <body>
 
@@ -31,10 +36,11 @@
       <div class="jumbotron">
         <h1>Your Life Clock</h1>
         <div id="result"></div>
+        <div class="well"></div>
         <div id="disappear">
         <img id="disappear" src="images/clock.png" alt="clock image">
       
-        <p>If your life could be compared to a 24-hour clock, what hour would it point to? <br> This is a simple web application designed to help those who think it is "too late" to start something new or try a new direction in life. This clock will help you gain perspective into how much time you have.  </p>
+        <p>If your life could be compared to a 24-hour clock, what hour would it point to? <br> This is designed to help those who think it is "too late" to start something new or try a new direction in life. This clock will help you gain perspective by giving you a metaphor based on your current age. </p>
         <br>
 
     <div id="inputDiv">
@@ -42,31 +48,38 @@
       <p id="sameLine">You are </p>
       <input id="inputActual" type="text" value="Input Your Age (1-80)"></input><p id="sameLine"> years old </p>
       <br><br>
-      <div id="errorMsg" class="alert alert-danger" style="display: none">Not a valid input. Please input an age value between 1 and 80</div>
+      <div id="errorMsg" class="alert alert-danger" style="display: none">Not a valid input. Please input an age value between 1 and 80.</div>
       </div>
       <br>
   </div> 
 
-<button onclick="playclip();" id="submit" class="btn btn-primary btn-lg btn-success">Calculate Clock &raquo;</button>
+<button  id="submit" class="btn btn-primary btn-lg btn-success">Calculate Clock &raquo;</button>
 
       </div> <!-- disappear ender -->
 
       </div> <!-- jumbotron ender -->
   
+<div class="mastfoot">
+            <div class="inner">
+              <p>@Created By <a href="http://terrybu.com">Terry Bu</a> at <a href="http://github.com/bucifer">github/bucifer</a>.</p>
+            </div>
+          </div>
+
 
 
     </div> <!-- /container -->
 
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
     <!-- LIFECLOCK OWN JavaScript Code -->
    <script src="script.js"></script>
 
 <audio>
-<source src="dcoin.wav"></source>
+<source src="button.mp3"></source>
 </audio>
 
 </body>

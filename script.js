@@ -23,6 +23,7 @@ $("#submit").click(function() {
     		errorMsg.style.display="none"; 	
         	calculate(userInput);
         	rearrange();
+        	playclip();
     	}
     	else {
     		errorMsg.style.display="";
@@ -41,15 +42,83 @@ submitButton.onclick = function () {
     	else {
     		errorMsg.style.display="";
     	}
-};
-*/
+};*/
+
+
+//CLOCK DISPLAY CODES
+function displayTime() {
+	var age = document.getElementById("inputActual").value;
+	var time = age * 18;
+	var minuteMark = time % 60;
+	var hourMark = Math.floor((time-minuteMark)/60);
+    var h = hourMark;
+    var m = minuteMark;
+    var s = 0;
+       
+    // --- Analog clock ---//
+    var canvas = document.querySelector("#clock");
+    var context = canvas.getContext("2d");
+     
+    // You can change this to make the clock as big or small as you want.
+    // Just remember to adjust the canvas size if necessary.
+    var clockRadius = 100;
+     
+    // Make sure the clock is centered in the canvas
+    var clockX = canvas.width / 2;
+    var clockY = canvas.height / 2;
+     
+    // Make sure TAU is defined (it's not by default)
+    Math.TAU = 2 * Math.PI;
+     
+	function drawArm(progress, armThickness, armLength, armColor) {
+	    var armRadians = (Math.TAU * progress) - (Math.TAU/4);
+	    var targetX = clockX + Math.cos(armRadians) * (armLength * clockRadius);
+	    var targetY = clockY + Math.sin(armRadians) * (armLength * clockRadius);
+	 
+	    context.lineWidth = armThickness;
+	    context.strokeStyle = armColor;
+	 
+	    context.beginPath();
+	    context.moveTo(clockX, clockY); // Start at the center
+	    context.lineTo(targetX, targetY); // Draw a line outwards
+	    context.stroke();
+	}
+
+	drawArm(h / 12, 10, 0.50, '#000000'); // Hour
+	drawArm(m / 60,  4, 0.75, '#000000'); // Minute
+}
+
+	function padZero(num) {
+	    if (num < 10) { 
+	        return "0" + String(num);
+	    }
+	    else {
+	        return String(num);
+	    }
+	}
+
+	function formatHour(h) {
+	    var hour = h % 12;
+	 
+	    if (hour == 0) { 
+	        hour = 12; 
+	    }
+	     
+	    return String(hour)
+	}
+
+	function getTimePeriod(h) {
+	    return (h < 12) ? "AM" : "PM"; 
+	}
+
+
 function calculate(age) {
 	//get contents of the age box
 	var time = age * 18;
 	var minuteMark = time % 60;
 	var hourMark = Math.floor((time-minuteMark)/60);
 	//setting PM hourmark so it shows 1:15pM instead of 13:15PM
-	if (hourMark > 12) {
+	if (hourMark >= 12) {
 		var hourMarkPM = hourMark - 12;
 	}
 	//sets padding so it looks 7:05 instead of 7:5 
@@ -67,38 +136,59 @@ function calculate(age) {
 	var comments = document.createElement("p");
 	comments.setAttribute("id", "comments");
 	//this shows 12:15AM instead of 0:15AM and sets rules for displaying the right times
-	if (age > 3 && hourMark < 12) {
-		result.innerHTML = clockAM;
-	}
-	else if (age <= 3) {
+	if (hourMark < 1) {
 		result.innerHTML = "12:" + paddingMinute + " AM";
 	}
-	else {
+	else if (hourMark >= 1 && hourMark < 12) {
+		result.innerHTML = clockAM;
+	}
+	else if (hourMarkPM == 0) {
+		result.innerHTML = "12:" + paddingMinute + " PM";
+	}
+	else if (hourMarkPM >= 1 && hourMarkPM < 12) {
 		result.innerHTML = clockPM;
+	}
+	else {
+		result.innerHTML = "&#8734";
 	}
 	//these conditions make appropriate comments appear at the appropriate times
 	if (age >= 0 && age < 5) {
 		comments.innerHTML = "Are you a baby? ;)";
 	}
-	if (age >= 5 && hourMark < 6) {
+	else if (age >= 5 && hourMark < 6) {
 		comments.innerHTML = "It is early morning time. Most people are still asleep. There's no need to hurry.";
 	}
-	if (hourMark >= 6 && hourMark < 10) {
-		comments.innerHTML = "Morning has just started. Some people are just barely waking up. You still have your entire day ahead of you. There's no need to think it's too late to do something!";
+	else if (hourMark >= 6 && hourMark <= 9) {
+		comments.innerHTML = "Morning has just started. Some people are just barely waking up. You still have your entire day ahead of you. There's absolutely no need to believe it's too late to do something!";
 	}
-	if (hourMark >=  10 && hourMark < 12) {
+	else if (hourMark >=  10 && hourMark < 12) {
 		comments.innerHTML = "You have just started your work day. There's a plenty of time left to change direction or accomplish so much more.";
 	}
-	if (hourMarkPM >= 0 && hourMarkPM <= 5) {
-		comments.innerHTML = "It's the afternoon. Isn't there so much left you want to do? It's also a great time to think about what to do in the evening.";
+	else if (hourMarkPM >= 0 && hourMarkPM <= 2) {
+		comments.innerHTML = "You have your whole day in front of you. If you've spent all morning working hard, maybe a short lunch break is in order ;)";
 	}
-	if (hourMarkPM >= 6 && hourMarkPM <= 12) {
-		comments.innerHTML = "How will you spend the rest of this evening? Isn't there still so much you want to do?"
+	else if (hourMarkPM >= 3 && hourMarkPM <= 6) {
+		comments.innerHTML = "A plenty of time left in the afternoon and evening. Isn't there still so much left you want to accomplish? What kind of plans do you have for the evening?";
+	}
+	else if (hourMarkPM >= 7 && hourMarkPM <= 11) {
+		comments.innerHTML = "How will you spend the rest of the evening? Isn't there still so much you want to do? Maybe it's too early to call it a night just yet ;) Have some fun."
+	}
+	else {
+		comments.innerHTML = "It is never too late."
 	}
 
+	var clockCanvas = document.createElement("canvas");
+	clockCanvas.setAttribute("id","clock");
+	clockCanvas.width = 200;
+	clockCanvas.height = 200;
+	//insert clockCanvas after the H1 tag
+	$('h1').after(clockCanvas);
+	displayTime();
+	//putting everything into the DOM mamuri
 	document.getElementById('result').appendChild(result); 
 	$("#result").show();
-	$("#result").after(comments);
+	$(".well").append(comments);
+	$(".well").show();
 }
 
 
@@ -107,31 +197,36 @@ function rearrange() {
 	var x = document.getElementById('disappear');
 	x.style.display="none";
 	var resetButton = document.createElement("button");
-	resetButton.setAttribute("id", "reset");
+	resetButton.setAttribute("id", "resetButton");
 	resetButton.setAttribute("class", "btn btn-primary btn-lg btn-success");
-	resetButton.innerHTML = "Back";
-	$("#comments").after(resetButton);
+	resetButton.innerHTML = "Start Over";
+	$(".well").after(resetButton);
 	resetButton.onclick = function () {
 		window.location.reload();
 	};
 }
 
 function playclip() {
-if (navigator.appName == "Microsoft Internet Explorer") {
-if (document.all)
- {
-  document.all.sound.src = "dcoin.wav";
- }
-}
+	if (navigator.appName == "Microsoft Internet Explorer") {
+	if (document.all)
+	 {
+	  document.all.sound.src = "button.mp3";
+	 }
+	}
 
-else {
-{
-var audio = document.getElementsByTagName("audio")[0];
-audio.play();
-}
-}
+	else {
+	{
+	var audio = document.getElementsByTagName("audio")[0];
+	audio.play();
+	}
+	}
 }
 
 $(document).ready(function() {
 	$("#result").hide();
+	$(".well").hide();
 });
+
+function goBack() {
+	window.history.back();
+}

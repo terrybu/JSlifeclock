@@ -231,7 +231,7 @@ function rearrange() {
 	var resetButton = document.createElement("button");
 	resetButton.setAttribute("id", "resetButton");
 	resetButton.setAttribute("class", "btn btn-primary btn-lg btn-success");
-	resetButton.innerHTML = "Start Over";
+	resetButton.innerHTML = "Reset";
 	$("#ageDisplay").after(resetButton);
 	resetButton.onclick = function () {
 		window.location.reload();

@@ -84,8 +84,8 @@ function displayTime() {
 	    context.stroke();
 	}
 
-	drawArm(h / 12, 10, 0.50, '#000000'); // Hour
-	drawArm(m / 60,  4, 0.75, '#000000'); // Minute
+	drawArm(h / 12, 10, 0.50, '#ab7b33'); // Hour
+	drawArm(m / 60,  4, 0.75, '#ab7b33'); // Minute
 }
 
 	function padZero(num) {
@@ -180,13 +180,18 @@ function calculate(age) {
 	var clockCanvas = document.createElement("canvas");
 	clockCanvas.setAttribute("id","clock");
 	clockCanvas.width = 200;
-	clockCanvas.height = 200;
+	clockCanvas.height = 205;
 	//insert clockCanvas after the H1 tag
 	$('h1').after(clockCanvas);
 	displayTime();
-	//putting everything into the DOM mamuri
+
+	//DISPLAY PART MAMURI
 	document.getElementById('result').appendChild(result); 
 	$("#result").show();
+	var ageDisplay = document.createElement("p");
+	ageDisplay.setAttribute("id","ageDisplay");
+	ageDisplay.innerHTML = "You are " + age + " years old.";
+	$("#result").after(ageDisplay);
 	$(".well").append(comments);
 	$(".well").show();
 }

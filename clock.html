@@ -7,14 +7,16 @@
 <style>
  #clock {
     padding: 10px;
-    border:1px solid #000000;
+    background-image: url("images/clockbgnewlarge.jpg");
+    background-size:220px 225px;
+    background-repeat:no-repeat;
 }
 </style>
 </head>
  
 <body>
 <div id="current-time">12:00:00 AM</div>
-<canvas id="clock" width="200" height="200">
+<canvas id="clock" width="200" height="205">
     If you can see this message, your browser does not support canvas 
     and needs an update. Sorry. :(
 </canvas>
@@ -24,8 +26,8 @@
 document.addEventListener('DOMContentLoaded', displayTime);
 
 function displayTime() {
-    var h = 7;
-    var m = 24;
+    var h = 10;
+    var m = 30;
     var s = 0;
      
     var timeString = formatHour(h) + ":" + padZero(m) + ":" + padZero(s) + " " + getTimePeriod(h);
@@ -60,8 +62,8 @@ function displayTime() {
 	    context.stroke();
 	}
 
-	drawArm(h / 12, 10, 0.50, '#000000'); // Hour
-	drawArm(m / 60,  4, 0.75, '#000000'); // Minute
+	drawArm(h / 12, 10, 0.50, 'black'); // Hour
+	drawArm(m / 60,  4, 0.75, 'black'); // Minute
 }
 
 function padZero(num) {

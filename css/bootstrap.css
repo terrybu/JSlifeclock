@@ -6,6 +6,10 @@
 
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 
+.footer {
+  margin-top: -2%;
+}
+
 #result {
   margin-bottom: 1%;
 }
@@ -4411,11 +4415,11 @@ a.list-group-item.active > .badge,
   margin-left: 3px;
 }
 .jumbotron {
-  padding: 30px;
+  padding: 0px;
   margin-bottom: 30px;
   color: inherit;
   background-color: #eee;
-  margin-top: 5%;
+  margin-top: 1%;
   text-align: center;
 }
 .jumbotron h1,

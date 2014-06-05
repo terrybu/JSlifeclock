@@ -188,14 +188,24 @@ function calculate(age) {
 	//DISPLAY PART MAMURI
 	document.getElementById('result').appendChild(result); 
 	$("#result").show();
-	var ageDisplay = document.createElement("p");
-	ageDisplay.setAttribute("id","ageDisplay");
-	ageDisplay.innerHTML = "You are " + age + " years old.";
-	$("#result").after(ageDisplay);
 	$(".well").append(comments);
 	$(".well").show();
+	var ageDisplay = document.createElement("p");
+	ageDisplay.setAttribute("id","ageDisplay");
+	var hourCalculation = ((80-age)*365*24);
+	var formatHour = formatNumber(hourCalculation);
+	ageDisplay.innerHTML = "You are " 
+	+ age + " years old. Using 80 as average life expectancy, you have " 
+	+ formatHour + " hours remaining." + 
+	"<br> *Author Malcolm Gladwell stated in 'Outliers' that you need 10,000 hours to master a <a href=http://en.wikipedia.org/wiki/List_of_academic_disciplines_and_sub-disciplines target=_blank>discipline</a>.<br> You have time enough to master " + (hourCalculation/10000) + " <a href=http://en.wikipedia.org/wiki/List_of_academic_disciplines_and_sub-disciplines target=_blank>disciplines</a>.";
+	
+	$(".well").after(ageDisplay);
+	//$("#ageDisplay").append(masterText);
 }
 
+function formatNumber (num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}
 
 function rearrange() {
 	//get rid of previous screen and load the RESULT sections
@@ -205,7 +215,7 @@ function rearrange() {
 	resetButton.setAttribute("id", "resetButton");
 	resetButton.setAttribute("class", "btn btn-primary btn-lg btn-success");
 	resetButton.innerHTML = "Start Over";
-	$(".well").after(resetButton);
+	$("#ageDisplay").after(resetButton);
 	resetButton.onclick = function () {
 		window.location.reload();
 	};

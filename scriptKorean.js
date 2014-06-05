@@ -1,4 +1,4 @@
-var ageField = document.getElementById("inputActual");
+var ageField = document.getElementById("inputActualKorean");
 
 //clear input box when clicked
 ageField.onfocus = function() {
@@ -8,7 +8,7 @@ ageField.onfocus = function() {
 //put placeholder back into input box when clicked out
 ageField.onblur = function() {
 	if (ageField.value == "") {
-		ageField.value = "Input Your Age (1-80)";
+		ageField.value = "나이를 입력하세요 (만1~80세)";
 	}
 };
 
@@ -47,7 +47,7 @@ submitButton.onclick = function () {
 
 //CLOCK DISPLAY CODES
 function displayTime() {
-	var age = document.getElementById("inputActual").value;
+	var age = document.getElementById("inputActualKorean").value;
 	var time = age * 18;
 	var minuteMark = time % 60;
 	var hourMark = Math.floor((time-minuteMark)/60);
@@ -122,56 +122,68 @@ function calculate(age) {
 		var hourMarkPM = hourMark - 12;
 	}
 	//sets padding so it looks 7:05 instead of 7:5 
-	if (minuteMark < 10) {
-		var paddingMinute = "0" + minuteMark.toString();
+	if (minuteMark == 0) {
+		var minuteMarkCheck = "";
 	}
 	else {
-		var paddingMinute = minuteMark.toString();
+		var minuteMarkCheck = minuteMark;
 	}
+	
 	//finalizing result variables with colons and AM/PM signs
-	var clockAM = hourMark + ":" + paddingMinute + " AM";
-	var clockPM = hourMarkPM + ":" + paddingMinute + " PM";
+	var clockEarlyMorning = "새벽 " + hourMark + "시 " + minuteMarkCheck + "분";
+	var clockMorning = "아침 " + hourMark + "시 " + minuteMarkCheck + "분";
+	var clockAfternoon = "오후 " + hourMarkPM + "시 " + minuteMarkCheck + "분";
+	var clockNight = "저녁 " + hourMarkPM + "시 " + minuteMarkCheck + "분";
 	// create the element and store it in a variable
 	var result = document.createElement("p");
 	var comments = document.createElement("p");
 	comments.setAttribute("id", "comments");
 	//this shows 12:15AM instead of 0:15AM and sets rules for displaying the right times
-	if (hourMark < 1) {
-		result.innerHTML = "12:" + paddingMinute + " AM";
+	if (hourMark == 0) {
+		result.innerHTML = "밤 12시 " + minuteMarkCheck + "분";
 	}
-	else if (hourMark >= 1 && hourMark < 12) {
-		result.innerHTML = clockAM;
+	else if (hourMark >= 1 && hourMark < 6) {
+		result.innerHTML = clockEarlyMorning;
 	}
-	else if (hourMarkPM == 0) {
-		result.innerHTML = "12:" + paddingMinute + " PM";
+	else if (hourMark >= 6 && hourMark < 12) {
+		result.innerHTML = clockMorning;
 	}
-	else if (hourMarkPM >= 1 && hourMarkPM < 12) {
-		result.innerHTML = clockPM;
+	else if (age == 40) {
+		result.innerHTML = "정오 12시";
+	}
+	else if (age != 40 && hourMark == 12) {
+		result.innerHTML = "오후 12시" + minuteMarkCheck + "분";
+	}
+	else if (hourMarkPM >= 1 && hourMarkPM < 6) {
+		result.innerHTML = clockAfternoon;
+	}
+	else if (hourMarkPM >= 6 && hourMarkPM < 12) {
+		result.innerHTML = clockNight;
 	}
 	else {
 		result.innerHTML = "&#8734";
 	}
 	//these conditions make appropriate comments appear at the appropriate times
 	if (age >= 0 && age < 5) {
-		comments.innerHTML = "Are you a baby? ;)";
+		comments.innerHTML = "갓난 아기세요? ㅋㅋㅋ ;)";
 	}
 	else if (age >= 5 && hourMark < 6) {
-		comments.innerHTML = "It is early morning time. Most people are still asleep. There's no need to hurry.";
+		comments.innerHTML = "대부분의 사람들은 잠을 자고 있는 좋은 시기입니다. 지금의 시간을 유용히 쓰시고 많은 것을 배우세요.";
 	}
 	else if (hourMark >= 6 && hourMark <= 9) {
-		comments.innerHTML = "Morning has just started. Some people are just barely waking up. You still have your entire day ahead of you. There's absolutely no need to believe it's too late to do something!";
+		comments.innerHTML = "아침이 겨우 시작했습니다. 등교나 출근을 아직 안했거나 잠을 자고 있어도 이상하지 않을 시간입니다. 남은 시간은 많습니다. 성급해하지 마시고 천천히 일어나세요.";
 	}
 	else if (hourMark >=  10 && hourMark < 12) {
-		comments.innerHTML = "You have just started your work day. There's a plenty of time left to change direction or accomplish so much more.";
+		comments.innerHTML = "아직도 아침입니다. 오후와 밤에 무엇을 할지 생각하기에 좋은 시간입니다. 남은 시간은 많습니다.";
 	}
 	else if (hourMarkPM >= 0 && hourMarkPM <= 2) {
-		comments.innerHTML = "You have your whole day in front of you. If you've spent all morning working hard, maybe a short lunch break is in order ;)";
+		comments.innerHTML = "아침은 끝났지만 남은 시간은 많습니다. 지금까지 쉬지않고 달려 오셨다면 잠시 점심시간을 갖는것도 좋지 않을까요? 남은 오후 내내 무엇을 하고싶으세요? ";
 	}
 	else if (hourMarkPM >= 3 && hourMarkPM <= 6) {
-		comments.innerHTML = "A plenty of time left in the afternoon and evening. Isn't there still so much left you want to accomplish? What kind of plans do you have for the evening?";
+		comments.innerHTML = "당신은 자신의 일에 만족하십니까? 남은 시간은 많습니다. 당신의 밤은 어떻게 보내고 싶으세요?";
 	}
 	else if (hourMarkPM >= 7 && hourMarkPM <= 11) {
-		comments.innerHTML = "How will you spend the rest of the evening? Isn't there still so much you want to do? Maybe it's too early to call it a night just yet?"
+		comments.innerHTML = "당신은 남은 밤을 어떻게 보내고 싶으십니까? 남은 시간은 많습니다. 아직 잠을 자기에는 너무 이르지 않습니까? 하고 싶은 일들이 너무 많으시지 않습니까?"
 	}
 	else {
 		comments.innerHTML = "It is never too late."
@@ -194,25 +206,15 @@ function calculate(age) {
 	ageDisplay.setAttribute("id","ageDisplay");
 	var hourCalculation = ((80-age)*365*24);
 	var formatHour = formatNumber(hourCalculation);
-	if (age <= 60) {
-	ageDisplay.innerHTML = "You are " 
-	+ age + " years old. Using 80 as average life expectancy, you have " 
-	+ formatHour + " hours remaining." + 
-	"<br> *Author Malcolm Gladwell stated in 'Outliers' that you need 10,000 hours to master a <a href=http://en.wikipedia.org/wiki/List_of_academic_disciplines_and_sub-disciplines target=_blank>discipline</a>.<br> If you were to study/practice 3 hours everyday for 10 years, you have enough time to master " + Math.floor((80-age)/10) + " <a href=http://en.wikipedia.org/wiki/List_of_academic_disciplines_and_sub-disciplines target=_blank>disciplines</a>.";
-	}
-	else if (age >= 61 && age <= 70) {
-	ageDisplay.innerHTML = "You are " 
-	+ age + " years old. Using 80 as average life expectancy, you have " 
-	+ formatHour + " hours remaining." + 
-	"<br> *Author Malcolm Gladwell stated in 'Outliers' that you need 10,000 hours to master a <a href=http://en.wikipedia.org/wiki/List_of_academic_disciplines_and_sub-disciplines target=_blank>discipline</a>.<br> If you were to study/practice 3 hours everyday for 10 years, you have enough time to master " + Math.floor((80-age)/10) + " <a href=http://en.wikipedia.org/wiki/List_of_academic_disciplines_and_sub-disciplines target=_blank>discipline</a>.";
+	if (age <= 70) {
+	ageDisplay.innerHTML = "당신은 만 " + age + "세 입니다. 평균수명을 80세로 계산했을 때, 당신의 남은 시간은 " + formatHour + " 시간입니다." + "<br> 말콤 글래드웰의 '1만 시간의 법칙'에 의하면 어느 한 분야의 전문가가 되기 위해서는 10년간 일주일에 3시간씩 연습이 필요하다고 합니다. 당신은 남은 시간안에 " + Math.floor((80-age)/10) + "가지 분야의 전문가가 될 수 있습니다.";
 	}
 	else if (age == 80) {
 		ageDisplay.innerHTML = "";
 	}
-	//So that the Malcolm Gladwell bit doesn't show when there's less than 10,000 hours remaining for older people
 	else {
-	ageDisplay.innerHTML = "You are " + age + " years old. Using 80 as average life expectancy, you have " 
-	+ formatHour + " hours remaining."
+	ageDisplay.innerHTML = "당신은 만 " 
+	+ age + "세 입니다. 평균수명을 80세로 계산했을 때, 당신의 남은 시간은 " + formatHour + " 시간입니다." ; 
 	}
 
 	$(".well").after(ageDisplay);

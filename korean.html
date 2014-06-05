@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Life Clock</title>
+  <title>Life Clock | Korean Version</title>
 
      <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -22,41 +22,42 @@
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Life Clock</a>
+          <a class="navbar-brand" href="#">아프니까 인생시계</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li><a href="home.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="korean.html">Korean Version</a></li>
+            <li class="active"><a href="#">Korean Version</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
+
     <div class="container theme-showcase" role="main">
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
-        <h1>Your Life Clock</h1>
+        <h1>아프니까 인생시계</h1>
         <div id="result"></div>
         <div class="well"></div>
         <div id="disappear">
         <img id="disappear" src="images/clock.png" alt="clock image">
       
-        <p>If your life could be compared to a 24-hour clock, what hour would it point to? <br> This is designed to help those who think it is "too late" to start something new or try a new direction in life. This clock will help you gain perspective by giving you a metaphor based on your current age. </p>
+        <p>당신의 인생을 24시간으로 비유하면 지금 몇시 몇분을 가리키고 있을까요?<br> '아프니까 청춘이다' 를 쓰신 <b>김난도 선생님</b>께 감사드립니다. </p>
         <br>
 
     <div id="inputDiv">
       <div id="inputArea">
-      <p id="sameLine">You are </p>
-      <input id="inputActual" type="text" value="Input Your Age (1-80)"></input><p id="sameLine"> years old </p>
+      <p id="sameLine">당신은 </p>
+      <input id="inputActualKorean" type="text" value="나이를 입력하세요 (만1~80세)"></input><p id="sameLine"> 살 입니다. </p>
       <br><br>
-      <div id="errorMsg" class="alert alert-danger" style="display: none">Not a valid input. Please input an age value between 1 and 80.</div>
+      <div id="errorMsg" class="alert alert-danger" style="display: none">나이가 허용되는 범위에서 벗어났습니다. 다시 입력해주세요 (1-80)</div>
       </div>
       <br>
   </div> 
 
-<button  id="submit" class="btn btn-primary btn-lg btn-success">Calculate Clock &raquo;</button>
+<button  id="submit" class="btn btn-primary btn-lg btn-success">시계 계산 &raquo;</button>
 
       </div> <!-- disappear ender -->
 
@@ -78,7 +79,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <!-- LIFECLOCK OWN JavaScript Code -->
-   <script src="script.js"></script>
+   <script src="scriptKorean.js"></script>
 
 <audio>
 <source src="button.mp3"></source>

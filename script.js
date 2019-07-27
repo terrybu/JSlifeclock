@@ -240,7 +240,7 @@ function playclip() {
 	if (navigator.appName == "Microsoft Internet Explorer") {
 	if (document.all)
 	 {
-	  document.all.sound.src = "button.mp3";
+	  document.all.sound.src = "button.wav";
 	 }
 	}
 
